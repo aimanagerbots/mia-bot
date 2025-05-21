@@ -6,8 +6,9 @@ app = Flask(__name__)
 def slack_events():
     data = request.get_json()
 
+    # Slack URL Verification Challenge
     if data.get("type") == "url_verification":
-        return jsonify({"challenge": data["challenge"]})
+        return jsonify({"challenge": data.get("challenge")})
 
     return jsonify({"status": "ok"})
 
